@@ -5,15 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { ColorColumn, columns } from "./columns";
+import { ProductColumn, columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
 import { ApiList } from "@/components/ui/api-list";
 
-interface ColorClientProps {
-  data: ColorColumn[];
+interface ProductClientProps {
+  data: ProductColumn[];
 }
 
-export const ColorClient: React.FC<ColorClientProps> = ({ data }) => {
+export const ProductClient: React.FC<ProductClientProps> = ({ data }) => {
   const router = useRouter();
   const params = useParams();
 
@@ -21,11 +21,11 @@ export const ColorClient: React.FC<ColorClientProps> = ({ data }) => {
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Color (${data.length})`}
-          description="Manage colors for your store"
+          title={`Product (${data.length})`}
+          description="Manage Products for your store"
         />
 
-        <Button onClick={() => router.push(`/${params.storeId}/colors/new`)}>
+        <Button onClick={() => router.push(`/${params.storeId}/products/new`)}>
           <Plus className="mr-2 h-4 w-4 " />
           Add New
         </Button>
@@ -33,9 +33,9 @@ export const ColorClient: React.FC<ColorClientProps> = ({ data }) => {
       <Separator />
       <DataTable searchKey="name" columns={columns} data={data} />
 
-      <Heading title="API" description="API calls for Colors" />
+      <Heading title="API" description="API calls for Products" />
       <Separator />
-      <ApiList entityName="colors" entityIdName="colorId" />
+      <ApiList entityName="products" entityIdName="productId" />
     </>
   );
 };
